@@ -11,7 +11,7 @@ domains = domains.split("\n")
 # find the last domain script was interrupted
 with open("taken_domains_3.txt", "r") as f:
     tested_domains = f.read()
-tested_domains = domains.split("\n")[-1]
+tested_domains = tested_domains.split("\n")[-2]
 tested_domain_idx = int(tested_domains.split(".")[0])
 
 # domains = ["7baa.com", 'aabb.com', 'z7u.com']  # Test domains
@@ -33,9 +33,10 @@ for x, domain in enumerate(domains[::-1]):
         print(result)    
         with open("taken_domains_3.txt", "a") as f:
             f.write(f"{result}\n")    
-        with open("found_domains_3.txt", "a") as f:
-            # append controlling message for test
-            f.write(f"[MONITOR] tested:{x} domains. The most resent: {domain_name}\n")    
+        if x % 100 == 0:
+            with open("found_domains_3.txt", "a") as f:
+                # append controlling message for test
+                f.write(f"[MONITOR] tested:{x} domains. The most resent: {domain_name}\n")    
     except Exception as e:
         error_first_line = str(e).split("\n")[0]
         result = f"[ERROR] ({x}) {error_first_line}"
