@@ -14,8 +14,8 @@ domains = domains.split("\n")
 # find the last domain script was interrupted
 with open(LOG_TAKEN_DOMAINS_FILE_NAME, "r") as f:
     tested_domains = f.read()
-tested_domains = tested_domains.split("\n")[-2]
-tested_domain_idx = int(tested_domains.split(".")[0])
+tested_domains = tested_domains.split("\n")[-1]
+tested_domain_idx = int(tested_domains.split(".")[0] or "0")
 
 # domains = ["7baa.com", 'aabb.com', 'z7u.com']  # Test domains
 domains.append("non-existing-domain")  # #  Append non_exiting domain for test
@@ -39,7 +39,7 @@ for x, domain in enumerate(domains[::-1]):
         if x % 100 == 0:
             with open(LOG_FREE_DOMAINS_FILE_NAME, "a") as f:
                 # append monitoring message for test
-                f.write(f"[MONITOR] tested:{x} domains. The most resent: {domain_name}\n")    
+                f.write(f"[MONITOR] tested:{x} domains. The most recent: {domain_name}\n")    
     except Exception as e:
         error_first_line = str(e).split("\n")[0]
         result = f"[ERROR] ({x}) {error_first_line}"
