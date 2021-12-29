@@ -4,7 +4,8 @@ D_ZONE = "com"
 LOG_TAKEN_DOMAINS_FILE_NAME = "taken_domains_4.txt"
 LOG_FREE_DOMAINS_FILE_NAME = "found_domains_4.txt"
 
-DOMAIN_SOURCE_FILE_NAME = "all_domains_b.txt"
+# DOMAIN_SOURCE_FILE_NAME = "all_domains_alph.txt"
+DOMAIN_SOURCE_FILE_NAME = "all_domains_shuffle.txt"
 
 # Read all domain names variants
 with open(DOMAIN_SOURCE_FILE_NAME, "r") as f:
